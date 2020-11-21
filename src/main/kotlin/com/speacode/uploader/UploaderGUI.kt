@@ -14,6 +14,7 @@ import com.intellij.openapi.ui.popup.BalloonBuilder
 import com.intellij.openapi.ui.popup.BalloonHandler
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.ui.components.JBLabel
+import com.intellij.ui.layout.panel
 import com.intellij.ui.popup.BalloonPopupBuilderImpl
 import com.intellij.uiDesigner.core.AbstractLayout
 import com.intellij.util.ui.GridBag
@@ -35,7 +36,7 @@ class UploaderGUI:DialogWrapper(true) {
         init()
         title="Speacode Video Uploader"
         setOKButtonText("Upload")
-        setSize(400,200)
+        setResizable(false)
     }
 
     override fun doOKAction() {
@@ -66,15 +67,11 @@ class UploaderGUI:DialogWrapper(true) {
             .setDefaultWeightX(1.0)
             .setDefaultFill(GridBagConstraints.HORIZONTAL)
 
-        panelMain.preferredSize = Dimension(400, 200)
-        panelMain.insets.right = 10
-        panelMain.insets.left = 10
-
+        panelMain.preferredSize = Dimension(300,200)
         panelMain.add(label("Title"), gridBag.nextLine().next().weightx(0.2))
         panelMain.add(txtTitle, gridBag.nextLine().next().weightx(0.8))
         panelMain.add(label("Video Path"), gridBag.nextLine().next().weightx(0.2))
         panelMain.add(txtPath, gridBag.nextLine().next().weightx(1.0))
-
         btnBrowse.addActionListener(BrowseFileButtonClickListener())
         btnBrowse.text = "BROWSE"
         panelMain.add(btnBrowse,gridBag.nextLine().next().weightx(0.1))
