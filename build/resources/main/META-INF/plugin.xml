@@ -1,0 +1,20 @@
+<idea-plugin>
+  <change-notes>
+      Add change notes here.&lt;br&gt;
+      &lt;em&gt;most HTML tags may be used&lt;/em&gt;</change-notes>
+  <idea-version since-build="202.7660" until-build="202.*"/>
+  <id>com.video_uploader.Video Uploader Plugin</id>
+  <name>Video Uploader</name>
+  <version>1.0-SNAPSHOT</version>
+  <vendor email="support@speacode.com" url="http://www.speacode.com">Speacode</vendor>
+  <description>
+    Upload videos right from the IntelliJ IDE
+    </description>
+  <extensions defaultExtensionNs="com.intellij"/>
+  <actions>
+    <group id="VideoUploader.InitialGroup" text="VideoUploader" description="Upload Videos from IDE">
+      <add-to-group group-id="MainMenu" anchor="last"/>
+      <action class="com.speacode.uploader.UploadVideo" id="Uploader.Actions.UploadVideo" text="Upload Video"/>
+    </group>
+  </actions>
+</idea-plugin>

@@ -1,0 +1,26 @@
+<idea-plugin>
+    <id>com.video_uploader.Video Uploader Plugin</id>
+    <name>Video Uploader</name>
+    <version>1.0</version>
+    <vendor email="support@speacode.com" url="http://www.speacode.com">Speacode</vendor>
+
+    <description><![CDATA[
+    Upload videos right from the IntelliJ IDE
+    ]]></description>
+
+    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+<!--    <depends>com.intellij.modules.platform</depends>-->
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+        <group id="VideoUploader.InitialGroup" text="VideoUploader" description="Upload Videos from IDE">
+            <add-to-group group-id="MainMenu" anchor="last"/>
+            <action class="com.speacode.uploader.UploadVideo" id="Uploader.Actions.UploadVideo" text="Upload Video" />
+        </group>
+    </actions>
+</idea-plugin>
