@@ -9,6 +9,7 @@ import com.intellij.openapi.fileChooser.FileChooserDescriptor
 import com.intellij.openapi.ui.DialogWrapper
 import com.intellij.openapi.ui.MessageType
 import com.intellij.openapi.ui.Messages
+import com.intellij.openapi.ui.ValidationInfo
 import com.intellij.openapi.ui.popup.Balloon
 import com.intellij.openapi.ui.popup.BalloonBuilder
 import com.intellij.openapi.ui.popup.BalloonHandler
@@ -24,27 +25,41 @@ import net.miginfocom.layout.Grid
 import java.awt.*
 import java.awt.event.ActionEvent
 import java.awt.event.ActionListener
+import java.awt.event.KeyEvent
+import java.awt.event.KeyListener
+import java.beans.PropertyChangeEvent
+import java.beans.PropertyChangeListener
+import java.util.*
 import javax.swing.*
+import kotlin.reflect.typeOf
 
 class UploaderGUI:DialogWrapper(true) {
     private val panelMain: JPanel = JPanel(GridBagLayout())
     private val txtPath: JTextField = JTextField()
     private val btnBrowse: JButton = JButton()
     private val txtTitle: JTextField = JTextField()
+    private var validated:Boolean = false
 
     init{
         init()
         title="Speacode Video Uploader"
         setOKButtonText("Upload")
         setResizable(false)
+        initValidation()
     }
 
     override fun doOKAction() {
+        //upload file here
+        super.doOKAction()
+        showBalloon("Hey", "Wow!", NotificationType.INFORMATION)
+    }
 
-        if(txtPath.text !== "" && txtTitle.text !== "")
-        {
-            //upload file here
-        }
+    override fun doValidate(): ValidationInfo? {
+        if(txtPath.text.isNullOrEmpty())
+            return ValidationInfo("File path is required", txtPath)
+        if(txtTitle.text.isNullOrEmpty())
+            return ValidationInfo("Title is required", txtTitle)
+        return null
     }
 
     private fun showBalloon(title:String, content:String, type: NotificationType)
@@ -67,6 +82,7 @@ class UploaderGUI:DialogWrapper(true) {
             .setDefaultWeightX(1.0)
             .setDefaultFill(GridBagConstraints.HORIZONTAL)
 
+        txtPath.isEditable = false
         panelMain.preferredSize = Dimension(300,200)
         panelMain.add(label("Title"), gridBag.nextLine().next().weightx(0.2))
         panelMain.add(txtTitle, gridBag.nextLine().next().weightx(0.8))
@@ -75,7 +91,6 @@ class UploaderGUI:DialogWrapper(true) {
         btnBrowse.addActionListener(BrowseFileButtonClickListener())
         btnBrowse.text = "BROWSE"
         panelMain.add(btnBrowse,gridBag.nextLine().next().weightx(0.1))
-
 
         return panelMain
     }
