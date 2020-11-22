@@ -30,7 +30,9 @@ import java.awt.event.KeyListener
 import java.beans.PropertyChangeEvent
 import java.beans.PropertyChangeListener
 import java.util.*
+import java.util.Timer
 import javax.swing.*
+import kotlin.concurrent.schedule
 import kotlin.reflect.typeOf
 
 class UploaderGUI:DialogWrapper(true) {
@@ -51,7 +53,9 @@ class UploaderGUI:DialogWrapper(true) {
     override fun doOKAction() {
         //upload file here
         super.doOKAction()
-        showBalloon("Hey", "Wow!", NotificationType.INFORMATION)
+        Timer("Show Balloon", false).schedule(500){
+            showBalloon("Video Uploader", "Video upload has been completed", NotificationType.INFORMATION)
+        }
     }
 
     override fun doValidate(): ValidationInfo? {
