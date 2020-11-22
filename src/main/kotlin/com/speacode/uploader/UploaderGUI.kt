@@ -7,33 +7,20 @@ import com.intellij.notification.NotificationType
 import com.intellij.openapi.fileChooser.FileChooser
 import com.intellij.openapi.fileChooser.FileChooserDescriptor
 import com.intellij.openapi.ui.DialogWrapper
-import com.intellij.openapi.ui.MessageType
 import com.intellij.openapi.ui.Messages
 import com.intellij.openapi.ui.ValidationInfo
-import com.intellij.openapi.ui.popup.Balloon
-import com.intellij.openapi.ui.popup.BalloonBuilder
-import com.intellij.openapi.ui.popup.BalloonHandler
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.ui.components.JBLabel
-import com.intellij.ui.layout.panel
-import com.intellij.ui.popup.BalloonPopupBuilderImpl
 import com.intellij.uiDesigner.core.AbstractLayout
 import com.intellij.util.ui.GridBag
 import com.intellij.util.ui.JBUI
 import com.intellij.util.ui.UIUtil
-import net.miginfocom.layout.Grid
 import java.awt.*
 import java.awt.event.ActionEvent
 import java.awt.event.ActionListener
-import java.awt.event.KeyEvent
-import java.awt.event.KeyListener
-import java.beans.PropertyChangeEvent
-import java.beans.PropertyChangeListener
-import java.util.*
 import java.util.Timer
 import javax.swing.*
 import kotlin.concurrent.schedule
-import kotlin.reflect.typeOf
 
 class UploaderGUI:DialogWrapper(true) {
     private val panelMain: JPanel = JPanel(GridBagLayout())
